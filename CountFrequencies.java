@@ -1,41 +1,23 @@
-/*
-Write a Java program to count the frequency of each element in an array and store the result as a list of lists, where each sublist contains an element and its corresponding frequency.
-Example:
-Input: [1, 2, 2, 3, 3, 3]
-Output: [[1, 1], [2, 2], [3, 3]]
-
+/* write a program to count the frequency of each element in an array and print the result.
+example: 1: 1
+          2: 2
+          3: 3
+          4: 1
  */
-import java.util.*;
+import java.util.HashMap;
 
-class CountFrequencies {
+public class CountFrequencies {
 
     public static void main(String[] args) {
+        int[] arr = {1, 2, 2, 3, 3, 3, 4};
+        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter size of array: ");
-        int n = sc.nextInt();
-
-        int[] arr = new int[n];
-        System.out.println("Enter " + n + " values:");
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+        for (int num : arr) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
         }
 
-        HashMap<Integer, Integer> hm = new HashMap<>();
-
-        for (int x : arr) {
-            hm.put(x, hm.getOrDefault(x, 0) + 1);
+        for (Integer key : frequencyMap.keySet()) {
+            System.out.println(key + ": " + frequencyMap.get(key));
         }
-
-        List<List<Integer>> result = new ArrayList<>();
-
-        for (int key : hm.keySet()) {
-            List<Integer> pair = new ArrayList<>();
-            pair.add(key);
-            pair.add(hm.get(key));
-            result.add(pair);
-        }
-
-        System.out.println(result);
     }
 }
